@@ -1,0 +1,3 @@
+FLASK_APP=nCov2019
+FLAKS_CONFIG=development
+FLASK_ENV=development
