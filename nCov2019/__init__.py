@@ -7,6 +7,8 @@ from flask import Flask
 from nCov2019.settings import config
 from nCov2019.extensions import db, csrf
 from nCov2019.blueprints.home import home_bp
+from nCov2019.blueprints.bless import bless_bp
+
 
 def create_app(config_name=None):
     if config_name is None:
@@ -29,6 +31,7 @@ def register_extensions(app):
 
 def register_blueprints(app):
     app.register_blueprint(home_bp)
+    app.register_blueprint(bless_bp)
 
 
 def register_template_context(app):

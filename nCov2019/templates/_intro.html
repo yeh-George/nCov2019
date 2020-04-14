@@ -16,7 +16,7 @@
                         <h5 class="center red-text text-darken-4" style="font-size: 25px; font-weight:500">累计确诊病例</h5>
                         <hr>
                         <p class="light center  red-text text-darken-3" style="font-size: 35px; font-weight:900">
-                            {{ confirmedCount_zh }}
+                            {{ everyday_data.confirmedCount_zh }}
                         </p>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                         <h5 class="center teal-text text-darken-4" style="font-size: 25px; font-weight:500">累计治愈病例</h5>
                         <hr>
                         <p class="light center teal-text text-darken-3" style="font-size: 35px; font-weight:900">
-                            {{ curedCount_zh }}
+                            {{ everyday_data.curedCount_zh }}
                         </p>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                         <h5 class="center grey-text text-darken-4" style="font-size: 25px; font-weight:500">累计死亡人数</h5>
                         <hr>
                         <p class="light center grey-text text-darken-3" style="font-size: 35px; font-weight:900">
-                            {{ deadCount_zh }}
+                            {{ everyday_data.deadCount_zh }}
                         </p>
                     </div>
                  </div>
@@ -47,7 +47,7 @@
                         <h5 class="center red-text text-darken-4" style="font-size: 25px; font-weight:500">当日新增确诊病例</h5>
                         <hr>
                         <p class="light center  red-text text-darken-3" style="font-size: 35px; font-weight:900">
-                            {{ confirmedCountIncr_zh }}
+                            {{ everyday_data.confirmedCountIncr_zh }}
                         </p>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                         <h5 class="center teal-text text-darken-4" style="font-size: 25px; font-weight:500">当日新增治愈病例</h5>
                         <hr>
                         <p class="light center teal-text text-darken-3" style="font-size: 35px; font-weight:900">
-                            {{ curedCountIncr_zh }}
+                            {{ everyday_data.curedCountIncr_zh }}
                         </p>
                  </div>
                  </div>
@@ -66,7 +66,7 @@
                         <h5 class="center grey-text text-darken-4" style="font-size: 25px; font-weight:500">当日新增死亡人数</h5>
                         <hr>
                         <p class="light center grey-text text-darken-3" style="font-size: 35px; font-weight:900">
-                            {{ deadCountIncr_zh}}
+                            {{ everyday_data.deadCountIncr_zh}}
                         </p>
                     </div>
                  </div>
@@ -84,7 +84,7 @@
      <div class="container">
         <div class="section">
             <h2 class="center red-text text-lighten-2" style="margin:60px;">
-                国外疫情数据 <small style="font-size:15px;" > ( 累计值 ）</small>
+                国外疫情数据 <small style="font-size:15px;" > ( 累计确诊病例 ）</small>
             </h2>
             <div class="row" style="margin:50px 25px;">
                 <div class="col s12 m4 l4">
@@ -92,7 +92,7 @@
                         <h5 class="center red-text text-darken-4" style="font-size: 25px; font-weight:500">美国</h5>
                         <hr>
                         <p class="light center  red-text text-darken-3" style="font-size: 35px; font-weight:900">
-                            {{ confirmedCount_USA }}</p>
+                            {{ everyday_data.confirmedCount_USA }}</p>
                     </div>
                 </div>
 
@@ -101,7 +101,7 @@
                         <h5 class="center teal-text text-darken-4" style="font-size: 25px; font-weight:500">意大利</h5>
                         <hr>
                         <p class="light center teal-text text-darken-3" style="font-size: 35px; font-weight:900">
-                            {{ confirmedCount_Italy }}
+                            {{ everyday_data.confirmedCount_Italy }}
                         </p>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
                         <h5 class="center grey-text text-darken-4" style="font-size: 25px; font-weight:500">英国</h5>
                         <hr>
                         <p class="light center grey-text text-darken-3" style="font-size: 35px; font-weight:900">
-                            {{ confirmedCount_UK }}
+                            {{ everyday_data.confirmedCount_UK }}
                         </p>
                     </div>
                  </div>

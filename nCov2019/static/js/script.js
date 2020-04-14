@@ -40,8 +40,8 @@ $(document).ready(function() {
         var hash = window.location.hash.replace('#', '');
         var url = null;
 
-        if (hash === 'blessing') {
-            url = blessing_page_url; //如果hash为#blessing
+        if (hash === 'bless') {
+            url = bless_page_url; //如果hash为#blessing
         } else {
             url = intro_page_url; //如果hash为#intro
         }
