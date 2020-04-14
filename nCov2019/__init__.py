@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 import os
+import click
 
 from flask import Flask
 
 from nCov2019.settings import config
-from nCov2019.extensions import db
+from nCov2019.extensions import db, csrf
 from nCov2019.blueprints.home import home_bp
 
 def create_app(config_name=None):
@@ -16,12 +17,14 @@ def create_app(config_name=None):
 
     register_extensions(app)
     register_blueprints(app)
+    register_commands(app)
 
     return app
 
 
 def register_extensions(app):
     db.init_app(app)
+    csrf.init_app(app)
 
 
 def register_blueprints(app):
@@ -37,7 +40,12 @@ def register_errors(app):
 
 
 def register_commands(app):
-    pass
+    @app.cli.command()
+    def init_db():
+        db.drop_all()
+        db.create_all()
+        click.echo('Database initialized.')
+
 
 
 
