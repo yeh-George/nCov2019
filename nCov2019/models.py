@@ -4,6 +4,8 @@ from nCov2019.extensions import db
 
 
 class EverydayData(db.Model):
+    __table_args__ = {"extend_existing": True}
+
     id = db.Column(db.Integer, primary_key=True)
     confirmedCount_zh = db.Column(db.Integer)
     curedCount_zh  = db.Column(db.Integer)
@@ -16,3 +18,9 @@ class EverydayData(db.Model):
     confirmedCount_Italy = db.Column(db.Integer)
 
     data_day = db.Column(db.Integer, unique=True)
+
+
+class Bless(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.Text)
+    timestamp = db.Column(db.DateTime, default=datetime.now, index=True)

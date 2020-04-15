@@ -8,7 +8,7 @@ from nCov2019.settings import config
 from nCov2019.extensions import db, csrf
 from nCov2019.blueprints.home import home_bp
 from nCov2019.blueprints.bless import bless_bp
-
+from nCov2019.fakes import fake_bless
 
 def create_app(config_name=None):
     if config_name is None:
@@ -49,7 +49,10 @@ def register_commands(app):
         db.create_all()
         click.echo('Database initialized.')
 
-
+    @app.cli.command()
+    def forge():
+        fake_bless()
+        click.echo('Bless added.')
 
 
 

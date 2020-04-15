@@ -1,3 +1,44 @@
-<h1>
-    bless
-</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- 祝福输入框 -->
+    <div class="row" >
+        <div class="col l6 m10 s12 offset-l3" style="margin-top: 40px">
+            <input id="item-input" data-href="{{ url_for('bless.new_bless') }}"
+                   type="text" placeholder="写下你的祝福" autocomplete="off" autofocus required>
+        </div>
+    </div>
+    <!-- 信息显示 -->
+    <div class="row" >
+        <div class="col l6 m10 s12 offset-l3">
+            <a class="blue-text button" >
+               当前有 <span class="grey-text small-text">11222</span> 条祝福
+            </a>
+            <a class="waves-effect waves-light btn red right z-depth-3" id="refresh-btn" style="padding:2px 20px;">
+                刷新
+            </a>
+        </div>
+    </div>
+
+    <!-- 祝福信息及点赞数 -->
+    {% for item in items %}
+        <div class="row">
+            <div class="col l6 m10 s12 item card-panel waves-effect waves-light
+                teal hoverable offset-l3 z-depth-2" style="padding:15px 25px">
+                <span id="body{{ item.id }}" class="white-text" style="display:block;text-indent:2em;" >
+                    {{ item.body }}
+                </span>
+                <p style="margin:0px 5px; padding:0px 10px">
+                <span class="THIN grey-text text-lighten-1">{{ item.timestamp.strftime('%m-%d %H:%M:%S') }}</span>
+                <span class="right">
+                    <a href="#" class="red-text text-darken-1">
+                    <i class="material-icons" style="vertical-align: middle;padding:0px 0px 5px">star</i> 点赞
+                    </a>
+                </span>
+                </p>
+            </div>
+        </div>
+    {% endfor %}
+
+    <!-- 祝福的分页组件 -->
+{% endblock %}
