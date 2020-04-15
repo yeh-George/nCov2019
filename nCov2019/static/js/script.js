@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    var ENTER_KEY = 13;
+    var ESC_KEY = 27;
 
     $.ajaxSetup({
         beforeSend: function (xhr, settings) {
@@ -35,7 +37,7 @@ $(document).ready(function() {
 
 
 
-    $(window).bind('hashChange', function() {
+    $(window).bind('hashchange', function() {
         // hash #intro, #blessing
         var hash = window.location.hash.replace('#', '');
         var url = null;
@@ -63,12 +65,48 @@ $(document).ready(function() {
         $('.parallax').parallax();
     }
 
-
     if (window.location.hash === '') {
         window.location.hash = '#intro'; // 默认状态， 或者第一次访问
     } else {
         $(window).trigger('hashChange'); // 当用户刷新页面，或者访问带有hash的URL， 触发hashChange事件
     }
+
+
+    // 创建新的Bless
+    function new_item(e) {
+        var $input = $('#bless-input');
+        var body = $input.val().trim();
+
+        //如果不是按下回车键，或者没有body，则取消
+        if (e.which != ENTER_KEY || !body) {
+            return;
+        }
+        $input.focus().val('');
+        $.ajax({
+            type: 'POST',
+            url: new_bless_url,
+            data: JSON.stringify({'body': body}),
+            contentType: 'application/json;charset=UTF-8',
+            success: function(data) {
+                Materialize.toast({html: data.message, classes: 'rounded'});
+                $('#items').prepend(data.html);
+                $('#bless-count').text(data.bless_count);
+                $('.button-collapse').sideNav();
+            }
+        });
+    }
+
+    // bless-input输入框绑定keyup时间
+    $(document).on('keyup', '#bless-input', new_item.bind(this));
+
+
+
+
+
+
+
+
+
 
 
 
