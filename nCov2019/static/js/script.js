@@ -141,12 +141,19 @@ $(document).ready(function() {
                 $('#main').hide().html(data).fadeIn(600); //将返回的局部页面插入到main元素中
                 activeComponent();
                 setTimeout(toggle_btn(), 601); //因为fadeIn需要600，toggle_btn需要在内容加载完后实现
+                $('#bless-input').focus();
             }
         });
 
     }
 
+    // 点击分页组件
     $(document).on('click', '.page', paginate_bless.bind(this));
+    // 点击‘刷新’按钮
+    $(document).on('click', '#refresh-btn', paginate_bless.bind(this));
+
+
+
 
 
 
