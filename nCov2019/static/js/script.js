@@ -55,9 +55,25 @@ $(document).ready(function() {
             success: function(data) {
                 $('#main').hide().html(data).fadeIn(600); //将返回的局部页面插入到main元素中
                 activeComponent();
+
+                setTimeout(toggle_btn(), 601); //因为fadeIn需要600，toggle_btn需要在内容加载完后实现
             }
         });
     });
+
+    //实现当hash变化时，toggle-btn的内容和href也相应变化
+    function toggle_btn() {
+        var $btn = $('#toggle-btn');
+
+        if (window.location.hash === '#bless') {
+            $btn.text('返回主页');
+            $btn.attr('href', '#intro');
+        } else {
+            $btn.text('发送祝福');
+            $btn.attr('href', '#bless');
+        }
+
+    }
 
     //激活插入页面的Materiallize组件
     function activeComponent() {
@@ -68,7 +84,7 @@ $(document).ready(function() {
     if (window.location.hash === '') {
         window.location.hash = '#intro'; // 默认状态， 或者第一次访问
     } else {
-        $(window).trigger('hashChange'); // 当用户刷新页面，或者访问带有hash的URL， 触发hashChange事件
+        $(window).trigger('hashchange'); // 当用户刷新页面，或者访问带有hash的URL， 触发hashChange事件
     }
 
 
@@ -96,8 +112,30 @@ $(document).ready(function() {
         });
     }
 
-    // bless-input输入框绑定keyup时间
+    // bless-input输入框绑定keyup事件
     $(document).on('keyup', '#bless-input', new_item.bind(this));
+
+    // 按下ESC清除内容
+    function clear_body(e) {
+        var $input = $('#bless-input');
+       
+        if (e.which === ESC_KEY) {
+            $input.focus().val('');
+        }
+
+    }
+
+    $(document).on('keydown', '#bless-input', clear_body.bind(this));
+
+
+
+
+
+
+
+
+
+
 
 
 
