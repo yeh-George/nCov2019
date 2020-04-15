@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template, request, jsonify
+import logging
+
+from flask import Blueprint, render_template, request, jsonify, current_app
 
 from nCov2019.models import Bless
 from nCov2019.extensions import db
@@ -8,10 +10,23 @@ bless_bp = Blueprint('bless', __name__)
 
 @bless_bp.route('/bless')
 def index():
-    all_count = Bless.query.count()
-    items = Bless.query.order_by(Bless.timestamp.desc()).all()
+    data = request.args
+    print(data)
+    if not data.get('page'):
+        page = 1
+    elif int(data.get('page')) < 1:
+        page = 1
+    else:
+        page = int(data.get('page'))
+
+    print(page)
+    print('......................')
+
+    per_page = current_app.config.get('NCOV2019_BLESS_PER_PAGE')
+    pagination = Bless.query.order_by(Bless.timestamp.desc()).paginate(page=page, per_page=per_page)
+    items = pagination.items
     bless_count = Bless.query.count()
-    return render_template('_bless.html', all_count=all_count, items=items, bless_count=bless_count)
+    return render_template('_bless.html', items=items, bless_count=bless_count, pagination=pagination)
 
 
 @bless_bp.route('/bless/new', methods=['POST'])

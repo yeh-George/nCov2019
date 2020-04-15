@@ -6,6 +6,7 @@ from flask import Flask
 
 from nCov2019.settings import config
 from nCov2019.extensions import db, csrf
+from nCov2019.models import Bless
 from nCov2019.blueprints.home import home_bp
 from nCov2019.blueprints.bless import bless_bp
 from nCov2019.fakes import fake_bless
@@ -20,6 +21,7 @@ def create_app(config_name=None):
     register_extensions(app)
     register_blueprints(app)
     register_commands(app)
+    register_shell_context(app)
 
     return app
 
@@ -40,6 +42,13 @@ def register_template_context(app):
 
 def register_errors(app):
     pass
+
+
+def register_shell_context(app):
+    @app.shell_context_processor
+    def make_shell_context():
+        return dict(db=db, Bless=Bless)
+
 
 
 def register_commands(app):

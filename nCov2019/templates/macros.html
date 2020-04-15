@@ -1,0 +1,24 @@
+{% macro render_pagination(pagination) %}
+        <ul class="pagination">
+            <li class="{% if pagination.has_prev %}waves-effect{% else %}disabled{% endif %}">
+                <a class="{% if pagination.has_prev %}page{% else %}{% endif %}">
+                    <i class="material-icons"  data-page="{% if pagination.page == 1 %}1{% else %}
+                    {{ pagination.page - 1 }}{% endif%}">chevron_left</i></a>
+            </li>
+            {%- for page in pagination.iter_pages() %}
+                {% if page %}
+                    <li class="{% if pagination.page == page %}active{% else %}waves-effect{% endif %}">
+                        <a  class="page" data-page="{{ page }}">{{ page }}</i>
+                    </a></li>
+                {% else %}
+                    <!-- 当page=None时 -->
+                    <span class=ellipsis>…</span>
+                {% endif %}
+            {% endfor %}
+            <li class="{% if pagination.has_next %}waves-effect{% else %}disabled{% endif %}">
+                <a class="{% if pagination.has_next %}page{% else %}{% endif %}">
+                    <i class="material-icons"  data-page="{% if pagination.page + 1 >= pagination.pages %}
+                    {{ pagination.pages }}{% else %}{{ pagination.page + 1 }}{% endif%}">chevron_right</i></a>
+            </li>
+        </ul>
+{% endmacro %}

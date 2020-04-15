@@ -118,7 +118,7 @@ $(document).ready(function() {
     // 按下ESC清除内容
     function clear_body(e) {
         var $input = $('#bless-input');
-       
+
         if (e.which === ESC_KEY) {
             $input.focus().val('');
         }
@@ -128,7 +128,25 @@ $(document).ready(function() {
     $(document).on('keydown', '#bless-input', clear_body.bind(this));
 
 
+    // pagination组件 实现换页
+    function paginate_bless(e) {
+        var $el = $(e.target);
 
+
+        $.ajax({
+            type: 'GET',
+            url: bless_page_url,
+            data: {'page': $el.data('page')},
+            success: function(data) {
+                $('#main').hide().html(data).fadeIn(600); //将返回的局部页面插入到main元素中
+                activeComponent();
+                setTimeout(toggle_btn(), 601); //因为fadeIn需要600，toggle_btn需要在内容加载完后实现
+            }
+        });
+
+    }
+
+    $(document).on('click', '.page', paginate_bless.bind(this));
 
 
 
