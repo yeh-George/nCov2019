@@ -32,7 +32,7 @@ $(document).ready(function() {
         } else {
             message = default_error_message;
         }
-        Materialize.toast({html: message});
+        Materialize.toast(message, 1000, 'rounded red red-lighten-2');
     });
 
 
@@ -55,7 +55,6 @@ $(document).ready(function() {
             success: function(data) {
                 $('#main').hide().html(data).fadeIn(600); //将返回的局部页面插入到main元素中
                 activeComponent();
-
                 setTimeout(toggle_btn(), 601); //因为fadeIn需要600，toggle_btn需要在内容加载完后实现
             }
         });
@@ -104,7 +103,7 @@ $(document).ready(function() {
             data: JSON.stringify({'body': body}),
             contentType: 'application/json;charset=UTF-8',
             success: function(data) {
-                Materialize.toast({html: data.message, classes: 'rounded'});
+                Materialize.toast(data.message, 1000, 'rounded teal teal-lighten-2');
                 $('#items').prepend(data.html);
                 $('#bless-count').text(data.bless_count);
                 $('.button-collapse').sideNav();
@@ -137,7 +136,7 @@ $(document).ready(function() {
             url: bless_page_url,
             data: {'page': $el.data('page')},
             success: function(data) {
-                $('#main').hide().html(data).fadeIn(600); //将返回的局部页面插入到main元素中
+                $('#main').hide().html(data).fadeIn(1000); //将返回的局部页面插入到main元素中
                 activeComponent();
                 setTimeout(toggle_btn(), 601); //因为fadeIn需要600，toggle_btn需要在内容加载完后实现
                 $('#bless-input').focus();
@@ -177,28 +176,11 @@ $(document).ready(function() {
             data: {'id': id},
             success: function(data) {
                 $('#thumb-up-' + id).text(data.num);
-                Materialize.toast({html: data.message, classes: 'rounded'});
+                Materialize.toast(data.message, 1000, 'rounded teal teal-lighten-2');
             }
         });
     }
 
     $(document).on('click', '.thumb-up', thumb_up.bind(this));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 });
