@@ -7,8 +7,10 @@
         <p style="margin:0px 5px; padding:0px 10px">
         <span class="THIN grey-text text-lighten-1">{{ item.timestamp.strftime('%m-%d %H:%M:%S') }}</span>
         <span class="right">
-            <a href="#" class="red-text text-darken-1">
-            <i class="material-icons" style="vertical-align: middle;padding:0px 0px 5px">thumb_up</i> 点赞
+            <a class="red-text text-darken-1">
+            <i class="material-icons thumb-up" data-id="{{ item.id }}"
+               style="vertical-align: middle;padding:0px 0px 5px">thumb_up</i>
+                <span class="BLACK" id="thumb-up-{{ item.id }}">{{ item.thumb_up }}</span> 次点赞
             </a>
         </span>
         </p>

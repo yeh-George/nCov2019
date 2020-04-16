@@ -132,7 +132,6 @@ $(document).ready(function() {
     function paginate_bless(e) {
         var $el = $(e.target);
 
-
         $.ajax({
             type: 'GET',
             url: bless_page_url,
@@ -149,12 +148,41 @@ $(document).ready(function() {
 
     // 点击分页组件
     $(document).on('click', '.page', paginate_bless.bind(this));
-    // 点击‘刷新’按钮
-    $(document).on('click', '#refresh-btn', paginate_bless.bind(this));
+
+    // 刷新按钮 （可以直接用paginate_bless方法
+    function refresh_bless(e) {
+        $.ajax({
+            type: 'GET',
+            url: bless_page_url,
+            success: function(data) {
+                $('#main').hide().html(data).fadeIn(600); //将返回的局部页面插入到main元素中
+                activeComponent();
+                setTimeout(toggle_btn(), 601); //因为fadeIn需要600，toggle_btn需要在内容加载完后实现
+                $('#bless-input').focus();
+            }
+        });
+    }
+
+    $(document).on('click', '#refresh-btn', refresh_bless.bind(this));
 
 
+    // 点赞按钮
+    function thumb_up(e) {
+        var $el = $(e.target);
+        var id = $el.data('id');
 
+        $.ajax({
+            type: 'GET',
+            url: thumb_up_url,
+            data: {'id': id},
+            success: function(data) {
+                $('#thumb-up-' + id).text(data.num);
+                Materialize.toast({html: data.message, classes: 'rounded'});
+            }
+        });
+    }
 
+    $(document).on('click', '.thumb-up', thumb_up.bind(this));
 
 
 

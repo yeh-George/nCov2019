@@ -23,4 +23,5 @@ class EverydayData(db.Model):
 class Bless(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.Text)
+    thumb_up = db.Column(db.Integer, default=0)
     timestamp = db.Column(db.DateTime, default=datetime.now, index=True)

@@ -38,12 +38,12 @@ def intro():
         if data.get('detail'):
             return jsonify(message=('Data get wrong.')), 400
 
-        confirmedCount_zh = data['results'][0]['confirmedCount']
-        curedCount_zh  = data['results'][0]['curedCount']
-        deadCount_zh =  data['results'][0]['deadCount']
-        confirmedCountIncr_zh =  data['results'][0]['confirmedIncr']
-        curedCountIncr_zh =  data['results'][0]['curedIncr']
-        deadCountIncr_zh =  data['results'][0]['deadIncr']
+        confirmedCount_zh = data['results'][0].get('confirmedCount') or 0
+        curedCount_zh  = data['results'][0].get('curedCount') or 0
+        deadCount_zh =  data['results'][0].get('deadCount') or 0
+        confirmedCountIncr_zh =  data['results'][0].get('confirmedIncr') or 0
+        curedCountIncr_zh =  data['results'][0].get('curedIncr') or 0
+        deadCountIncr_zh =  data['results'][0].get('deadIncr') or 0
 
         #美国确诊人数及新增确诊人数
         time.sleep(0.5)

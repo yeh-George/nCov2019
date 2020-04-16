@@ -11,16 +11,12 @@ bless_bp = Blueprint('bless', __name__)
 @bless_bp.route('/bless')
 def index():
     data = request.args
-    print(data)
     if not data.get('page'):
         page = 1
     elif int(data.get('page')) < 1:
         page = 1
     else:
         page = int(data.get('page'))
-
-    print(page)
-    print('......................')
 
     per_page = current_app.config.get('NCOV2019_BLESS_PER_PAGE')
     pagination = Bless.query.order_by(Bless.timestamp.desc()).paginate(page=page, per_page=per_page)
@@ -45,4 +41,19 @@ def new_bless():
                    message='发送祝福成功')
 
 
+@bless_bp.route('/bless/thumb-up', methods=['GET'])
+def thumb_up():
+    data = request.args
+    if not data.get('id'):
+        return jsonify(message='Id 不存在！'), 400
+    bless = Bless.query.get(int(data.get('id')))
+    if not bless:
+        return jsonify(message='Id 不存在！'), 400
+
+    bless.thumb_up = bless.thumb_up + 1
+    db.session.commit()
+
+    num = bless.thumb_up
+
+    return jsonify(num=num, message='点赞 +1')
 
