@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta charset="utf-8"/>
+        <title>Error {{ code }} - nCov2019</title>
+        <link href="{{ url_for('static', filename='css/materialize.min.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    </head>
+
+    <body>
+        <main>
+            <div class="row card-panel teal lighten-5 hoverable" style="margin:7% 20%; padding:10%" 0%>
+                    <h3 class="red-text text-darken-4 center" style="font-weight:600">{{ code }} - {{ info }}</h3>
+                    <a class="button right" href="{{ url_for('home.index') }}" style="margin:1rem 1rem">Back Home</a>
+            </div>
+        </main>
+    </body>
+</html>

@@ -171,9 +171,8 @@ $(document).ready(function() {
         var id = $el.data('id');
 
         $.ajax({
-            type: 'GET',
-            url: thumb_up_url,
-            data: {'id': id},
+            type: 'PATCH',
+            url: $el.data('href'),
             success: function(data) {
                 $('#thumb-up-' + id).text(data.num);
                 Materialize.toast(data.message, 1000, 'rounded teal teal-lighten-2');

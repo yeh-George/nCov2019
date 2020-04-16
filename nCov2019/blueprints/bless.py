@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import logging
 
 from flask import Blueprint, render_template, request, jsonify, current_app
@@ -41,12 +42,11 @@ def new_bless():
                    message='发送祝福成功')
 
 
-@bless_bp.route('/bless/thumb-up', methods=['GET'])
-def thumb_up():
-    data = request.args
-    if not data.get('id'):
+@bless_bp.route('/bless/thumb-up/<int:id>', methods=['PATCH'])
+def thumb_up(id):
+    if not id:
         return jsonify(message='Id 不存在！'), 400
-    bless = Bless.query.get(int(data.get('id')))
+    bless = Bless.query.get(id)
     if not bless:
         return jsonify(message='Id 不存在！'), 400
 

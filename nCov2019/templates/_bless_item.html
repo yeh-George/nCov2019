@@ -8,8 +8,8 @@
         <span class="THIN grey-text text-lighten-1">{{ item.timestamp.strftime('%m-%d %H:%M:%S') }}</span>
         <span class="right">
             <a class="red-text text-darken-1">
-            <i class="material-icons thumb-up" data-id="{{ item.id }}"
-               style="vertical-align: middle;padding:0px 0px 5px">thumb_up</i>
+            <i class="material-icons thumb-up" style="vertical-align: middle;padding:0px 0px 5px"
+               data-id="{{ item.id }}"  data-href="{{ url_for('bless.thumb_up', id=item.id) }}">thumb_up</i>
                 <span class="BLACK" id="thumb-up-{{ item.id }}">{{ item.thumb_up }}</span> 次点赞
             </a>
         </span>
