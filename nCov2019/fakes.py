@@ -5,7 +5,7 @@ from faker import Faker
 from nCov2019.extensions import db
 from nCov2019.models import Bless
 
-fake = Faker()
+fake = Faker('zh_CN')
 
 def fake_bless():
     for i in range(50):
