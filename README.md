@@ -1,5 +1,7 @@
 # nCov2019： 新冠肺炎数据发布的SPA项目
- 本项目通过调用[GitHub: 2019新型冠状病毒疫情实时爬虫](https://github.com/BlankerL/DXY-COVID-19-Crawler)提供的Web API接口来获取新冠肺炎相关数据，再基于jQuery（JavaScript）实现一个简单的单页程序（Single Page Application, SPA）。
+ 本项目通过调用[GitHub: 2019新型冠状病毒疫情实时爬虫](https://github.com/BlankerL/DXY-COVID-19-Crawler)提供的Web API接口来获取新冠肺炎相关数据，再基于jQuery（JavaScript）实现一个简单的单页程序（Single Page Application, SPA）。  
+
+**Demo: [nCov2019](http://203.195.141.243/)**
 
 ## 主要功能：
  * 疫情数据展示页：新冠肺炎实时数据的展示
